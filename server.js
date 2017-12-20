@@ -5,6 +5,12 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
 const flash = require('connect-flash');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/GoSolar";
+
+
 const app = express();
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -22,9 +28,6 @@ mongoose.connect(MONGODB_URI, function (err, res) {
     }
 });
 mongoose.set('debug', true);
-
-//morgan logger for logging request
-app.use(logger("dev"));
 
 app.use(session({ secret: 'whoLetThedogsOut'}));
 app.use(passport.initialize());
