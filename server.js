@@ -11,7 +11,6 @@ const session = require('express-session');
 const routes = require('./controller/routes.js');
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/GoSolar";
 
-
 const app = express();
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
