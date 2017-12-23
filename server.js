@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const routes = require('./controller/routes.js');
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/GoSolar";
 
 
@@ -38,14 +39,12 @@ app.use(function(req, res, next){
     res.locals.user = req.user || null;
     next();
 })
-app.get('/', (req, res) => {
-    res.send('Hello from backend world!');
-});
+app.use('/', routes);
 // Send every request to the React app
 // Define any API routes before this runs
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./view/public/index.html"));
-});
+// app.get("*", function(req, res) {
+//   res.sendFile(path.join(__dirname, "./view/public/index.html"));
+// });
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });

@@ -21,6 +21,7 @@ var userSchema = mongoose.Schema({
         type: String,
         required: true
     }
+    // need to link user to orders///
 });
 
 //methods

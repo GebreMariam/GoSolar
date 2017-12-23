@@ -10,11 +10,14 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Products from './components/Products';
 import Register from './components/Register';
+import img from './homeimage.jpg';
+
+
 
 class App extends Component {
   render() {
     return (
-        <div className="App">
+        <div s className="App">
           <Header />
               <Switch> 
                 <Route exact path="/" component={Home}/> 
