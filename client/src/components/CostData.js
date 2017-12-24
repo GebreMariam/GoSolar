@@ -1,6 +1,7 @@
+import React from 'react';
 import Axios from 'axios';
 
-class SolarDataService {
+class CostData extends React.Component {
     LocationData(value) {
         Axios.post("http://localhost:4040/solarData",{location: value})
         .then((response)=> {
@@ -10,6 +11,14 @@ class SolarDataService {
             console.log(error)
         })
     }
+    render() {
+        return (
+            <div>
+                <p className="alert alert-secondary"> This is cost Data</p>
+            </div>
+        )
+    }
+  
 }
 
-export default SolarDataService
+export default CostData

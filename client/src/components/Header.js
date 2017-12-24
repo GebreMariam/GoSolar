@@ -10,7 +10,7 @@ import './Header.css';
 const Header = (props) => {
     console.log(props);
         return (
-        <div className="">
+        <div className="header">
                 <div>                
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <Link to="/" className="navbar-brand">GoSolar</Link>

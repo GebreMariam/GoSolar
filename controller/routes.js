@@ -5,12 +5,11 @@ var Router = require('router');
 var bodyParser = require('body-parser');
 var request = require('request');
 
-
 var router = Router();
     //home route
-    router.get('/', function (req, res) {
-        res.render('home');
-    });
+    // router.get('/', function (req, res) {
+    //     res.render('home');
+    // });
     //solar data
     router.post('/solarData',function(req,res){
         console.log(JSON.stringify(req.body));
@@ -52,32 +51,17 @@ var router = Router();
                 value = Math.round(ac_monthly[i]);
                 solRad.push(value);
             }
-            // console.log(solRad);
+            console.log(solRad);
                 getSolarData(ac_monthly); 
             });
             getSolarData = function(ac_monthly){
                 var solarData = {
                     sunData: ac_monthly
                 }
-              res.render('home',solarData);    
-                // res.send();
+              res.json(solarData);    
             }
                         
     });
-
-    router.get('/loginPage',function(req,res){
-        console.log('testlogin')
-        res.send('login');
-    })
-    // get login
-    // app.post('/login',
-    // passport.authenticate('local', { successRedirect: '/',
-    //                                  failureRedirect: '/login',
-    //                                  failureFlash: true })
-    // );
-
-    // passport.authenticate('local', { failureFlash: 'Invalid username or password.' });
-    // passport.authenticate('local', { successFlash: 'Welcome!' });
 
 
     

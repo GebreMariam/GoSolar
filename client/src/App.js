@@ -10,23 +10,23 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Products from './components/Products';
 import Register from './components/Register';
-import img from './homeimage.jpg';
-
 
 
 class App extends Component {
   render() {
     return (
-        <div s className="App">
-          <Header />
-              <Switch> 
-                <Route exact path="/" component={Home}/> 
-                <Route path="/about" component={About}/>  
-                <Route path="/Login" component={Login}/>
-                <Route path="/products" component={Products}/>
-                <Route path="/Register" component={Register}/> 
-              </Switch>  
-          <Footer />
+        <div className="App page">
+          <div className="content">
+            <Header />
+                <Switch> 
+                  <Route exact path="/" component={Home}/> 
+                  <Route path="/about" component={About}/>  
+                  <Route path="/Login" component={Login}/>
+                  <Route path="/products" component={Products}/>
+                  <Route path="/Register" component={Register}/> 
+                </Switch>
+          </div>  
+            <Footer />
         </div>           
     );
   }

@@ -28,12 +28,10 @@ import { Link } from 'react-router-dom';
         return(
             <div className="container col-sm-4 border border-secondary my-4">
             <form onSubmit={this.handleSubmit} className="my-3"> 
-                {/* <div className="form-group"> */}
-                    {/* <label for="email">Email address</label> */}
-                    <input type="text"value={this.state.email} onChange={this.handleChange} className="form-control"  placeholder="Enter email"/>
-                {/* </div> */}
                 <div className="form-group">
-                    {/* <label for="password">Password</label> */}
+                    <input type="text"value={this.state.email} onChange={this.handleChange} className="form-control"  placeholder="Enter email"/>
+                </div>
+                <div className="form-group">
                     <input type="password" className="form-control" value={this.state.password} onChange={this.handleChange} placeholder="Password"/>
                 </div>
                 <div className="mx-2">

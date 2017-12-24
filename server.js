@@ -14,7 +14,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/GoSolar";
 const app = express();
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("view/public"));
+  app.use(express.static("client/public"));
 }
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
