@@ -7,7 +7,7 @@ import './Footer.css';
 // import style from "./Footer.css";
 
 const Footer = (props) => {
-    console.log(props);
+    // console.log(props);
         return (
         <div className="footer">
                 <nav className="navbar navbar-expand-lg clearfix navbar-light bg-light">

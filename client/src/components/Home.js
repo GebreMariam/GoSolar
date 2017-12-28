@@ -1,65 +1,51 @@
 import React from 'react';
-import CostData from './CostData';
-import IpLocation from '../util/IpApiService';
-import SolarService from '../util/SolarService';
+import API from '../util/API';
 import SolarData from './SolarData';
+import CostData from './CostData';
+
 
 class Home extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+      city: '',
+      region: '',
       location: '',
       acMonthly: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentWillMount() {
-    IpLocation.LocationData()
-        .then((response)=> {
+  componentDidMount() {
+    if (this.state.city === '') {
+      API.LocationData()
+        .then((res)=> {
             this.setState({
-                location: `${response.data.city},${response.data.region}`,
-                name: 'locationData'
+                city: res.data.city,
+                region: res.data.region         
             })
             console.log(this.state.location)
           })
         .catch((error)=> {
             console.log(error)
-        })    
-        // SolarService.SolarEnergy(this.state.location)
-        // .then((response)=> {
-        //     console.log(response.data)
-        //     let ac_Monthly = response.data.outputs.ac_monthly;
-        //     for (let i = 0; i<ac_Monthly.length; i++) {
-        //         let item = Math.round(ac_Monthly[i]);
-        //         ac_Monthly.splice(i,1,item);
-        //         return ac_Monthly
-        //     }
-        //     this.setState({
-        //         acMonthly: ac_Monthly
-        //     })
-        // })
-        // .catch((error)=> {
-        //     console.log(error)
-        // })
-
-      }    
-locaCallback = () => {  
-  return this.state.location
-}
- 
+        }) 
+    }
+  }
   handleChange(event) {
     this.setState({
       location: event.target.value
     })
-    console.log(event.target.value);
   }
   handleSubmit(event) {
     event.preventDefault();
+    let input = document.getElementById('locaInput');
+    input.innerHTML="Hello world";
+    console.log(this.state.location.split(','));
+    let loca = this.state.location.split(',');
     this.setState({
-      location: event.target.value
-    })    
-    console.log(this.state.location);
+      city: loca[0].trim(),
+      region: loca[1].trim()
+    })     
   }
   render() {
     return(
@@ -67,14 +53,17 @@ locaCallback = () => {
           <form onSubmit={this.handleSubmit} >
               <div className="form-content">
                 <div className="form-group">
-                  <input onChange={this.handleChange} className="text-muted" placeholder="Location" name='location' type="text" />
+                  <input onChange={this.handleChange} id='locaInput' className="text-muted" placeholder="Location" type="text" />
                   <button name="calculate" className="ml-1 btn btn-sm btn-success">Calculate</button>
                 </div>    
               </div> 
           </form>
-          <SolarData location={this.state.location} data={this.state.acMonthly}/>
-          <div>{this.state.location}</div>
-          <CostData />
+          <SolarData city={this.state.city} region={this.state.region} />
+          <CostData location={this.state.state} />
+          current city is:
+          <div>{this.state.city}</div>
+          current state: 
+          <div>{this.state.region} </div>
       </div>
     )
   }

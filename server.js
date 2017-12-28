@@ -8,13 +8,13 @@ const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const routes = require('./controller/routes.js');
+const routes = require('./controller/routes');
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/GoSolar";
 
 const app = express();
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/public"));
+  app.use(express.static("client/build"));
 }
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
@@ -28,6 +28,8 @@ mongoose.connect(MONGODB_URI, function (err, res) {
     }
 });
 mongoose.set('debug', true);
+// Set up promises with mongoose
+mongoose.Promise = global.Promise;
 
 app.use(session({ secret: 'whoLetThedogsOut'}));
 app.use(passport.initialize());
@@ -38,12 +40,8 @@ app.use(function(req, res, next){
     res.locals.user = req.user || null;
     next();
 })
-app.use('/', routes);
-// Send every request to the React app
-// Define any API routes before this runs
-// app.get("*", function(req, res) {
-//   res.sendFile(path.join(__dirname, "./view/public/index.html"));
-// });
+app.use(routes);
+
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
