@@ -1,6 +1,6 @@
 //config/passport.js
-var localStrategy = require('passport-local').Strategy;
-var User = require('../app/models/user');
+const localStrategy = require('passport-local').Strategy;
+const User = require('../app/models/user');
 const passport = require('passport');
 //expose / export this function to the app.
 module.exports = function(passport){
@@ -28,8 +28,7 @@ module.exports = function(passport){
     },
     function(req, email, password, done) {
         console.log(req.body);
-        
-        //asynchronous
+                //asynchronous
         //User.findOne wont fire unless dat is sent back
         process.nextTick(() => {
             console.log('nextTick in motion!');
@@ -67,13 +66,10 @@ module.exports = function(passport){
         passwordField : 'password',
         passReqToCallback: true
     },
-    function(req, email, password, done) {
-            //valider user
+    function(req, email, password, done) {//valider user
             User.findOne({'email' : email }, (err, user) => {
-                //err
                 if (err)
                     return done(err);
-                    //check if user exists
                 if (!user){
                     return done(null, false, req.flash('loginMessage', 'No user found.'));
                 }
