@@ -66,13 +66,10 @@ module.exports = function(passport){
         passwordField : 'password',
         passReqToCallback: true
     },
-    function(req, email, password, done) {
-            //valider user
+    function(req, email, password, done) {//valider user
             User.findOne({'email' : email }, (err, user) => {
-                //err
                 if (err)
                     return done(err);
-                    //check if user exists
                 if (!user){
                     return done(null, false, req.flash('loginMessage', 'No user found.'));
                 }

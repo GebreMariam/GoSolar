@@ -1,8 +1,8 @@
 import Axios from 'axios';
 
 export default {
-    AvgMonthlyCost: () => {
-      return Axios.get("/CostData")
+    AvgMonthlyCost: (region) => {
+      return Axios.get("/CostData/"+ region)
     },      
     LocationData: ()=> {
         return Axios.get("http://ip-api.com/json");
@@ -22,10 +22,6 @@ export default {
         .catch((error)=> {
             console.log(error)
         })  
-    },
-    AddCost: (costData) => {
-        console.log('addCost called HERE');
-        return Axios.post("/costData", costData);
-      }
+    }
     
 }

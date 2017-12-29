@@ -1,10 +1,10 @@
 const path = require("path");
 const router = require("express").Router();
 const dataController = require("./dataController");
+const request = require('request');
 // API Routes
-router.route("/costData")
-  .get(dataController.AddCostData)
-  .post(dataController.GetCostData);
+router.route("/CostData/:region")
+  .get(dataController.GetCostData)
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
   res.sendFile(path.join(__dirname, "../client/public/index.html"));

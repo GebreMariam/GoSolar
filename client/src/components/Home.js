@@ -59,7 +59,7 @@ class Home extends React.Component{
               </div> 
           </form>
           <SolarData city={this.state.city} region={this.state.region} />
-          <CostData location={this.state.state} />
+          <CostData region={"CO"} />
           current city is:
           <div>{this.state.city}</div>
           current state: 

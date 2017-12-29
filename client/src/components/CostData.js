@@ -4,35 +4,23 @@ import API from '../util/API';
 
 class CostData extends React.Component {
     constructor(props) {
+        console.log(props);
         super(props)
         this.state = ({
-            state: '',
+            region: props.region,
             acMonthly: [1,2,3,4]
         })
     }
-    componentWillMount() {
-        API.AddCost({
-            state: "CO",
-            jan: 10.97,
-            feb: 10.97,
-            Mar: 10.97,
-            Apr: 10.97,
-            May: 10.97,
-            Jun: 10.97,
-            Jul: 10.97,
-            Aug: 10.97,
-            Sep: 10.97,
-            Nov: 10.97,
-            Dev: 10.97,
-          })
-            .then(res => console.log(res))
-            .catch(err => console.log(err));    
-        API.AvgMonthlyCost(this.state.state)
-        .then((response)=> {
-            console.log(response)
+    componentWillMount() {   
+        console.log(this.state.region)
+        API.AvgMonthlyCost(this.state.region)
+        .then((res)=> {
+            console.log(res.data)
+            let cost = res.data[0]
+            console.log(this.state.acMonthly)
         })
-        .catch((error)=> {
-            console.log(error)
+        .catch((err)=> {
+            console.log(err)
         })
     }
     data = () => {

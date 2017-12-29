@@ -6,54 +6,54 @@ var bcrypt = require('bcrypt-nodejs');
 //user schema
 var costSchema = mongoose.Schema({
     state    : {
+        type: String,
+        required: true        
+    },
+    Jan : {
         type: ["double"],
         required: true        
     },
-    Jan    : {
+    Feb : {
         type: ["double"],
         required: true        
     },
-    Feb   : {
-        type: ["double"],
-        required: true        
-    },
-    Mar: {
+    Mar : {
         type: ["double"],
         required: true
     },
-    Apr    : {
+    Apr : {
         type: ["double"],
         required: true        
     },
-    May   : {
+    May: {
         type: ["double"],
         required: true        
     },
-    Jun: {
+    Jun : {
         type: ["double"],
         required: true
     },
-    Jul    : {
+    Jul : {
         type: ["double"],
         required: true        
     },
-    Aug   : {
+    Aug : {
         type: ["double"],
         required: true        
     },
-    Sep: {
+    Sep : {
         type: ["double"],
         required: true
     },
-    Oct    : {
+    Oct : {
         type: ["double"],
         required: true        
     },
-    Nov   : {
+    Nov : {
         type: ["double"],
         required: true        
     },
-    Dec: {
+    Dec : {
         type: ["double"],
         required: true
     }
