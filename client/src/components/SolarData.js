@@ -35,4 +35,4 @@ const SolarData = (props) => {
             </div>
     )
 }
-export default SolarData
+export default SolarData;
