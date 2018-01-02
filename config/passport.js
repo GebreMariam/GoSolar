@@ -1,6 +1,6 @@
 //config/passport.js
 const localStrategy = require('passport-local').Strategy;
-const User = require('../app/models/user');
+const User = require('../models/user');
 const passport = require('passport');
 //expose / export this function to the app.
 module.exports = function(passport){

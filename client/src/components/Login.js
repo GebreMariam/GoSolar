@@ -26,7 +26,7 @@ import { Link } from 'react-router-dom';
       }
     render() {
         return(
-            <div className="container col-sm-4 border border-secondary my-4">
+            <div className="container col-sm-4 bg-default border border-silver my-4">
             <form onSubmit={this.handleSubmit} className="my-3"> 
                 <div className="form-group">
                     <input type="text"value={this.state.email} onChange={this.handleChange} className="form-control"  placeholder="Enter email"/>

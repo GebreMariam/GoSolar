@@ -1,0 +1,64 @@
+import React from 'react';
+import {Bar} from 'react-chartjs-2';
+import API from '../util/API';
+-----------
+Deployment
+
+In this activity we will deploy the React Reading List application to Heroku.
+Instructions
+Deploy the React Reading List application to Heroku. Make sure to perform the following:
+
+
+Initialize the project folder as a git repo.
+Create a Heroku app for the React Reading List App.
+Add a MongoLab Addon for the React Reading List Heroku app.
+Run yarn build from within the project folder.
+
+Hints
+
+
+Make sure you add and commit all changes before pushing up to Heroku.
+If your deployment fails, run heroku logs while in the project directory. This should print all of the logs produced from the failed deployment. Usually the issue can be found at the start of any errors.
+Ask an instructor or TA for help if you get stuck. Help your neighbor if you finish early!
+
+------------
+
+
+
+export default SolarData
+
+
+
+const SolarData = (props) => {
+    let location = props.city+', '+props.region
+    console.log(location)
+    API.SolarEnergy(props.city+', '+props.region) 
+        const data = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'Kwh',
+                        backgroundColor: 'rgba(255,99,132,0.2)',
+                        borderColor: 'rgba(255,99,132,1)',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+                        hoverBorderColor: 'rgba(255,99,132,1)',
+                        data: [1,3,2,33,44,55,23,123]
+                    }
+                ]
+    }
+    return (
+            <div>
+            <h4 className="text-muted">KWh Gained {location} </h4>
+                <Bar
+                    data={data}
+                    width={100}
+                    height={50}
+                    options={{
+                        maintainAspectRatio: true,
+                        responsive: true
+                    }}
+                />
+            </div>
+    )
+}

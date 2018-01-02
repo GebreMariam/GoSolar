@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const PORT = process.env.PORT || 4040;
+const PORT = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
@@ -8,10 +8,12 @@ const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const routes = require('./controller/routes');
+const app = express();
+require('./config/passport.js')(passport); 
+const routes = require('./controller/routes')(app, passport);
+
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/GoSolar";
 
-const app = express();
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -35,12 +37,14 @@ app.use(session({ secret: 'whoLetThedogsOut'}));
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login
 app.use(flash()); // connect-flash for flash messaging
+
+
 //global variables
 app.use(function(req, res, next){
     res.locals.user = req.user || null;
     next();
 })
-app.use(routes);
+// app.use('/', routes)
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);

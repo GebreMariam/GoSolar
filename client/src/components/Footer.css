@@ -2,4 +2,6 @@
 
 .footer .navbar {
     height: 111px;
+    margin: 22px;
+    border-radius: 11px;
 }

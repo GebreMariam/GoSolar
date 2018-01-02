@@ -13,9 +13,10 @@ import Register from './components/Register';
 
 
 class App extends Component {
+  
   render() {
     return (
-        <div className="App page">
+        <div className="App page divStyle">
           <div className="content">
             <Header />
                 <Switch> 
