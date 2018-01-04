@@ -7,7 +7,11 @@ export default {
     },     
     Products: () => {
         return Axios.get("/products")
-      },     
+      },
+    ProductDetails: (path) => {
+        console.log(path)
+        return Axios.get(path)
+    },      
     LocationData: ()=> {
         return Axios.get("http://ip-api.com/json");
     },

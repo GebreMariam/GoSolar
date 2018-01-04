@@ -14,6 +14,10 @@ Routes = function(app, passport) {
     app.route("/Products")
     .get(dataController.Products)
 
+
+    app.route("/productDetails/:id")
+    .get(dataController.ProductDetails)
+
   //process the signup form
   app.route('/signup')
     .post(passport.authenticate('local-signup', {

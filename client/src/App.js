@@ -9,6 +9,7 @@ import './components/Header.css';
 import Home from './components/Home';
 import Login from './components/Login';
 import Products from './components/Products';
+import ProductDetails from './components/ProductDetails';
 import Register from './components/Register';
 
 
@@ -24,6 +25,7 @@ class App extends Component {
                   <Route path="/about" component={About}/>  
                   <Route path="/Login" component={Login}/>
                   <Route path="/products" component={Products}/>
+                  <Route path="/productDetails" component={ProductDetails}/>
                   <Route path="/Register" component={Register}/> 
                 </Switch>
           </div>  

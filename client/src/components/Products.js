@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import API from '../util/API';
 
 
@@ -10,7 +11,7 @@ import API from '../util/API';
         prod: 'BullShitsssss...'
       }
     }
-    componentDidMount() {
+    componentWillMount() {
       API.Products()
       .then((res)=> {
           console.log('PRODUCTS name ' ,res.data[0])
@@ -33,10 +34,26 @@ import API from '../util/API';
     }
 
     render() {
+      const Prod = this.state.products.map((product)=> {
+        return (
+              
+          <div className="text-left m-3 col-sm-3 border border-silver" style={{ backgroundColor: 'white' }}>
+            <Link to={`/productDetails/${product._id}`} ><img className= "img-responsive" src={product.imgURL[0]} alt="prod" style={{ "height": 122, "width": 'auto'}}/>
+              <div className="row mx-auto text-primary"> 
+                <div className="justify-content-sm-start">{product.name}</div> 
+                <div className="mx-auto">${product.price}</div> 
+              </div>
+            </Link>
+             <p className="text-muted">{product.fullDescription}</p> 
+             <button className="mx-auto btn btn-small btn-success">Add to Cart</button>
+          </div>
+              
+                )
+      });
       return(
-         <div>
-          <h2>Products....</h2>
-            <li>{this.state.products[0].Power}</li>
+         <div className="">
+              <span>Products.... </span>
+            <div className="row justify-content-sm-center">{Prod}</div>
         </div>
       )
     }

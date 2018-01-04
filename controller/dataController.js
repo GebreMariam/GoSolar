@@ -17,5 +17,12 @@ module.exports = {
         .find()
         .then((data) => res.json(data))
         .catch(err => res.status(422).json(err));
+    },
+    ProductDetails: function(req, res) {
+        console.log('id is ', req.params.id);
+        db.products
+        .findById(req.params.id)
+        .then((data) => res.json(data))
+        .catch(err => res.status(422).json(err));
     }
 }
