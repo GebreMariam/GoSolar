@@ -15,7 +15,7 @@ const routes = require('./controller/routes')(app, passport);
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/GoSolar";
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "development") {
   app.use(express.static("client/build"));
 }
 // Makes connection asynchronously.  Mongoose will queue up database
