@@ -41,7 +41,17 @@ class AddOrder extends model {
 					  <label> Renorgy 600-watt </label> <br />
 					  <select ref="category">
 					  	categoryOptions{}
-					</div
+					</div>
+					<div>
+					  <label> Renorgy 400-watt </label> <br />
+					  <select ref="category">
+					  	categoryOptions{}
+					</div>
+					<div>
+					  <label> Renorgy 800-watt </label> <br />
+					  <select ref="category">
+					  	categoryOptions{}
+					</div>
 					<input type="submit" value="Submit" />
 					
 				</form>
