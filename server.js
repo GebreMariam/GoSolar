@@ -1,23 +1,26 @@
 const express = require("express");
 const path = require("path");
-const PORT = process.env.PORT || 4040;
+const PORT = process.env.PORT || 8080;
 const mongoose = require('mongoose');
+const app = express();
 const morgan = require('morgan');
 const passport = require('passport');
-const flash = require('connect-flash');
+require('./config/passport.js')(passport);
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const routes = require('./controller/routes');
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/GoSolar";
+require('./routes/routes')(app, passport);
+const flash = require('connect-flash');
 
-const app = express();
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/GoSolar";
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+app.use(express.static("client/build"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
+mongoose.Promise = global.Promise;
+mongoose.set('debug', true);
 mongoose.connect(MONGODB_URI, function (err, res) {
     if (err) {
         console.log ('ERROR connecting to: ' + MONGODB_URI + '. ' + err);
@@ -27,20 +30,18 @@ mongoose.connect(MONGODB_URI, function (err, res) {
         });
     }
 });
-mongoose.set('debug', true);
-// Set up promises with mongoose
-mongoose.Promise = global.Promise;
 
 app.use(session({ secret: 'whoLetThedogsOut'}));
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login
 app.use(flash()); // connect-flash for flash messaging
+
 //global variables
 app.use(function(req, res, next){
     res.locals.user = req.user || null;
     next();
 })
-app.use(routes);
+// app.use(routes);
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);

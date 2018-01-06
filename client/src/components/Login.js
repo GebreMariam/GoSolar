@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import API from '../util/API';
 
   class Login extends React.Component {
-      constructor(props) {
-        super(props);
+      constructor() {
+        super();
         this.state = {
             email: '',
             password: ''
@@ -14,25 +15,35 @@ import { Link } from 'react-router-dom';
       }
 
       handleChange(event) {
-          console.log(event.target)
-          this.setState({email: event.target.email});
-          this.setState({password: event.target.password});          
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({
+            [name]: value
+        });          
       }
-
+    
       handleSubmit(event) {
-        alert('Username (email) is ' + this.state.email + ' and password is ' + this.state.password);
-        console.log(this.state.password);
         event.preventDefault();
-      }
+        console.log('email submitted: ' + this.state.email + '  password: ' +this.state.password);
+        let user = {email: this.state.email, password: this.state.password}
+        API.Login(user)
+        .then((res) => {
+            console.log('Login get ', res.data)
+        })
+        .catch((err) =>{
+            console.log(err);
+        })
+        }
     render() {
         return(
-            <div className="container col-sm-4 border border-secondary my-4">
+            <div className="container col-sm-4 bg-default border border-silver my-4">
             <form onSubmit={this.handleSubmit} className="my-3"> 
                 <div className="form-group">
-                    <input type="text"value={this.state.email} onChange={this.handleChange} className="form-control"  placeholder="Enter email"/>
+                    <input name="email" type="text" onChange={this.handleChange} />
                 </div>
                 <div className="form-group">
-                    <input type="password" className="form-control" value={this.state.password} onChange={this.handleChange} placeholder="Password"/>
+                    <input type="password" name="password"  onChange={this.handleChange.bind(this)}/>
                 </div>
                 <div className="mx-2">
                 <input type="submit" className="btn btn-primary" value="Log In"/>
@@ -46,4 +57,5 @@ import { Link } from 'react-router-dom';
         ) 
     }
   }
+
   export default Login;

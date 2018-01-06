@@ -3,7 +3,6 @@ import API from '../util/API';
 import SolarData from './SolarData';
 import CostData from './CostData';
 
-
 class Home extends React.Component{
   constructor(props) {
     super(props);
@@ -11,25 +10,84 @@ class Home extends React.Component{
       city: '',
       region: '',
       location: '',
-      acMonthly: []
+      acMonthly: [],
+      costData: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentDidMount() {
-    if (this.state.city === '') {
-      API.LocationData()
+  componentWillMount() {
+    if (this.state.region === '' || this.state.city === '') {
+      console.log('CALL IP API')
+        API.LocationData()
         .then((res)=> {
             this.setState({
                 city: res.data.city,
-                region: res.data.region         
+                region: res.data.region,
+                location: `${res.data.city},${res.data.region}`
             })
-            console.log(this.state.location)
+            console.log(this.state.region);
           })
-        .catch((error)=> {
-            console.log(error)
-        }) 
+        .then(() => {
+        API.AvgMonthlyCost(this.state.region)
+        .then((res)=> {
+            console.log('RES COST ' ,res.data)
+            let cost = res.data.Dec ///parse first twelve entries.
+            this.setState({ costData: cost })
+        })
+        console.log('COST DATA ' , this.state.costData)
+        .catch((err)=> {console.log(err) })    
+        })  
+        .catch((err)=> { console.log(err) }) 
+        .then(() => {
+        API.SolarEnergy(this.state.location)
+        .then((res)=> {
+          let ac_Monthly = res.data.outputs.ac_monthly;
+          // console.log(res.data);
+          for (let i = 0; i<ac_Monthly.length; i++) {
+              let item = Math.round(ac_Monthly[i]);
+              ac_Monthly.splice(i,1,item);
+          }
+            this.setState({ acMonthly: ac_Monthly })
+            console.log('KWH DATA ', this.state.acMonthly)  
+          })
+          .catch((err)=> { console.log(err) })  
+        })
+         
+      } else {
+        API.SolarEnergy(this.state.location)
+        .then((res)=> {
+          let ac_Monthly = res.data.outputs.ac_monthly;
+          // console.log(res.data);
+            for (let i = 0; i<ac_Monthly.length; i++) {
+                let item = Math.round(ac_Monthly[i]);
+                ac_Monthly.splice(i,1,item);
+            }
+            this.setState({ acMonthly: ac_Monthly }) 
+            // console.log(this.state.acMonthly)
+          })
+          .catch((err)=> { console.log(err) })
+          API.AvgMonthlyCost(this.state.region)
+          .then((res)=> {
+              console.log(res.data)
+              let cost = res.data[0]
+              this.setState({ costData: cost })
+          })
+          .catch((err)=> {
+              console.log(err)
+          })    
     }
+  }
+  componentDidMount() {
+    API.AvgMonthlyCost(this.state.region)
+    .then((res)=> {
+        console.log(res.data)
+        let cost = res.data[0]
+        this.setState({ costData: cost })
+    })
+    .catch((err)=> {
+        console.log(err)
+    })    
   }
   handleChange(event) {
     this.setState({
@@ -38,13 +96,12 @@ class Home extends React.Component{
   }
   handleSubmit(event) {
     event.preventDefault();
-    let input = document.getElementById('locaInput');
-    input.innerHTML="Hello world";
     console.log(this.state.location.split(','));
     let loca = this.state.location.split(',');
     this.setState({
       city: loca[0].trim(),
-      region: loca[1].trim()
+      region: loca[1].trim(),
+      location: `${loca[0].trim()},${loca[1].trim()}`
     })     
   }
   render() {
@@ -58,10 +115,10 @@ class Home extends React.Component{
                 </div>    
               </div> 
           </form>
-          <SolarData city={this.state.city} region={this.state.region} />
-          <CostData region={"CO"} />
-          current city is:
-          <div>{this.state.city}</div>
+          <SolarData city={this.state.city} data={this.state.acMonthly} region={this.state.region} onChange={this.handleChange}/>
+          <CostData region={this.state.region} data={this.state.costData} />
+          cost data city is:
+          <div>{this.state.costData}</div>
           current state: 
           <div>{this.state.region} </div>
       </div>

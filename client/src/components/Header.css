@@ -5,5 +5,7 @@
 
 .header {
     /* margin-top: 150px; */
-    background-color: goldenrod;
+    /* background-color: goldenrod; */
+    margin: 22px;
+    border-radius: 11px;
 }

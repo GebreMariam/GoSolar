@@ -7,9 +7,9 @@ const styles = {
 
 const About = (props) => (
    <div className="container">
-    <div class="row my-5 mx-auto">
-    <div class="col-sm-12 pr-5">
-        <p class="text-muted text-left">
+    <div className="row my-5 mx-auto">
+    <div className="col-sm-12 pr-5">
+        <p className="text-muted text-left">
             GoSolar is an up-and-coming internet startup company dedicated to communities and individuals who are interested in becoming more energy responsible. We at GoSolar are dedicated to our consumers providing data and estimates to help start their financial planning out their investment in alternative energy. Among data research and quotation services, we also give a list of responsible alternative energy installation contractors to help our customers become better environmental stewards to their community, improving both their individual and their community’s health. 
             To get started on your (and your family’s and community’s) journey to become a more energy responsible citizen, click <a href="/"> here </a>.
         </p>

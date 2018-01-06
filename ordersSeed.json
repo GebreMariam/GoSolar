@@ -1,0 +1,12 @@
+/* 1 */
+{
+    "_id" : ObjectId("5a13cb9aa79a67182fa42999"),
+    "product" : "LG Mono Black",
+    "price" : 123.21,
+    "imgURL" : [ 
+        "img/gigaWatt.jpg", 
+        "img/gigaWatt2.jpg"
+    ],
+    "manufacturer" : "LG",
+    "user" : ObjectId("5a13cb9aa79a67182fa42942")
+}
