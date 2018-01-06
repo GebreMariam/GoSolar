@@ -71,7 +71,7 @@ import API from '../util/API';
               <h5>Product Details</h5>
             </span>
             <span className="text-right pr-5 text-muted col-sm">
-              <h4>Cart <badge> | {4}</badge></h4>
+              <h4>Cart <badge> | {'length of some array'+ 4}</badge></h4>
             </span>
         </div>   
         <hr/>
