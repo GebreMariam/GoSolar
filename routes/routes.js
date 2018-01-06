@@ -35,9 +35,9 @@ module.exports = function(app, passport) {
   .get(dataController.Orders)
     
   // If no API routes are hit, send the React app
-  // app.use(function(req, res) {
-  //     res.sendFile(path.join(__dirname, "../client/public/index.html"));
-  //   });
+  app.use(function(req, res) {
+      res.sendFile(path.join(__dirname, "../client/public/index.html"));
+    });
 
 }
   
