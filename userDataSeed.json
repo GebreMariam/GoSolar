@@ -1,0 +1,17 @@
+/* 1 */
+{
+    "_id" : ObjectId("5a13cb9aa79a67182fa42942"),
+    "firstName" : "Gabe",
+    "lastName" : "Gabe",
+    "email" : "gebremar@colorado.edu",
+    "password" : "Gabe"
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("5a13cb9aa79a67182fa44444"),
+    "firstname" : "Gabe",
+    "lastName" : "Gabe",
+    "email" : "gabe@email.com",
+    "password" : "gabe"
+}

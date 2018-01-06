@@ -42,4 +42,4 @@ class SolarData extends React.Component {
     }
    
 }
-export default SolarData
+export default SolarData;
