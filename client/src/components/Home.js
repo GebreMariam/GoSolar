@@ -89,7 +89,6 @@ class Home extends React.Component{
         console.log(err)
     })    
   }
-
   handleChange(event) {
     this.setState({
       location: event.target.value
