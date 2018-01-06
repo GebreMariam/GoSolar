@@ -24,5 +24,12 @@ module.exports = {
         .findById(req.params.id)
         .then((data) => res.json(data))
         .catch(err => res.status(422).json(err));
+    },
+    SignUp: function(req, res) {
+        console.log('creating user', req.body);
+        db.user
+        .create(req.body)
+        .then((data) => res.json(data))
+        .catch(err => res.status(422).json(err));
     }
 }

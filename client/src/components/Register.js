@@ -1,61 +1,66 @@
 import React from 'react'
-
+import API from '../util/API';
 
   class Register extends React.Component {
     constructor (props) {
       super(props);
+      console.log(props)
       this.state = {
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         email: '',
-        password: '',
-        confirmpassword: ''
-      };
+        password: ''
+      }
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange(event) {
-        console.log(event.target.firstname);
+      const target = event.target;
+      const value = target.value;
+      const name = target.name;
         this.setState({
-          firstname: event.target.firstname,
-          lastname: event.target.lastname,
-          email: event.target.lastname,
-          password: event.target.password
-        })
+            [name]: value
+        });         
       }
     handleSubmit(event) {
-      alert(this.state.firstname);
       event.preventDefault();
-    }
-    
+      API.SignUp(this.state)
+      .then((res) => {
+        console.log('SignUp form ', res)
+      })
+      .catch((err) =>{
+        console.log(err);
+      })
+    } 
+     
     render() {
       return(
-         <div className="container col-sm-5 border border-secondary my-5 mx-auto">
-      <form onSubmit={this.handleSubmit} className="my-3">
-          <div className="form-group text-left">
-              <label htmlFor="firstname">First Name</label>
-              <input type="firstname" className="form-control" value={this.state.firstname} onChange={this.handleChange}  aria-describedby="firstname" placeholder="Enter First Name"/>
-          </div>
-          <div className="form-group text-left">
-              <label htmlFor="lastname">Last Name</label>
-              <input type="lastname" className="form-control" value={this.state.lastname} onChange={this.handleChange}   aria-describedby="emailHelp" placeholder="Enter Last Name"/>
-          </div>
-          <div className="form-group text-left">
-              <label htmlFor="email">Email address</label>
-              <input type="email" className="form-control" value={this.state.email} onChange={this.handleChange}   aria-describedby="emailHelp" placeholder="Enter email"/>
-              <small id="emailHelp" className="form-text text-muted">Don't worry, we'll never share your email with anyone else.</small>
-          </div>
-          <div className="form-group text-left">
-              <label htmlFor="password">Password</label>
-              <input type="password" className="form-control" value={this.state.password} onChange={this.handleChange}   placeholder="Password"/>
-          </div>
-          <div className="form-group text-left">
-              <label htmlFor="confirmpassword">Confirm Password</label>
-              <input type="confirmpassword" className="form-control" value={this.state.confirmpassword} onChange={this.handleChange} placeholder="Confirm Password"/>
-          </div>
-          <button type="submit" className="btn btn-primary" id="register">Register</button>
-      </form>
-    </div>
+        <div className="container col-sm-5 border border-secondary my-5 mx-auto">
+          <form onSubmit={this.handleSubmit} className="my-3">
+              <div className="form-group text-left">
+                  <label htmlFor="firstName">First Name</label>
+                  <input type="text" name="firstName" className="form-control" value={this.state.firstname} onChange={this.handleChange}/>
+              </div>
+              <div className="form-group text-left">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input name="lastName" className="form-control" value={this.state.lastname} onChange={this.handleChange} placeholder="Last Name"/>
+              </div>
+              <div className="form-group text-left">
+                  <label htmlFor="email">Email address</label>
+                  <input name="email" className="form-control" value={this.state.email} onChange={this.handleChange}  placeholder="email"/>
+                  <small id="emailHelp" className="form-text text-muted">Don't worry, we'll never share your email with anyone else.</small>
+              </div>
+              <div className="form-group text-left">
+                  <label htmlFor="password">Password</label>
+                  <input name="password" className="form-control" value={this.state.password} onChange={this.handleChange}   placeholder="Password"/>
+              </div>
+              <div className="form-group text-left">
+                  <label htmlFor="">Confirm Password</label>
+                  <input name="confirmPassword" className="form-control" value={this.state.confirmpassword} onChange={this.handleChange} placeholder="Confirm Password"/>
+              </div>
+              <button type="submit" className="btn btn-primary" id="register">Register</button>
+          </form>
+        </div>
   )
     }
   }
