@@ -20,13 +20,13 @@ module.exports = function(passport){
         });
     });
 
-    passport.use('local-login', new localStrategy({
+    passport.use('login', new localStrategy({
         usernameField : 'email',
         passwordField : 'password',
         passReqToCallback: true
     },
     function(req, email, password, done) {//valider user
-        console.log('local-login........');
+        console.log('FUCK YOU........');
             User.findOne({email : email }, (err, user) => {
                 if (err)
                     // console.log('ERR');
@@ -44,7 +44,7 @@ module.exports = function(passport){
 
     //LOCAL SIGNUP
     //using named strategies since we have login and signup
-    passport.use('local-signup', new localStrategy({
+    passport.use('signup', new localStrategy({
         firstNameField: 'firstName',
         lastNameField: 'lastName',
         usernameField: 'email',

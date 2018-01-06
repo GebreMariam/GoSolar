@@ -18,6 +18,7 @@ module.exports = {
         .then((data) => res.json(data))
         .catch(err => res.status(422).json(err));
     },
+
     ProductDetails: function(req, res) {
         console.log('id is ', req.params.id);
         db.products
@@ -25,8 +26,15 @@ module.exports = {
         .then((data) => res.json(data))
         .catch(err => res.status(422).json(err));
     },
+    Orders: function(req, res) {
+        console.log('FETCHING orders! ' + req.params.user);
+        db.orders
+        .find({ user: req.params.user})
+        .then((data) => res.json(data))
+        .catch(err => res.status(422).json(err));
+    },
     SignUp: function(req, res) {
-        console.log('creating user', req.body);
+        console.log('CREATING user', req.body);
         db.user
         .create(req.body)
         .then((data) => res.json(data))

@@ -24,17 +24,16 @@ import API from '../util/API';
       }
     
       handleSubmit(event) {
+        event.preventDefault();
         console.log('email submitted: ' + this.state.email + '  password: ' +this.state.password);
         let user = {email: this.state.email, password: this.state.password}
         API.Login(user)
         .then((res) => {
             console.log('Login get ', res.data)
-           
         })
         .catch((err) =>{
             console.log(err);
         })
-            event.preventDefault();
         }
     render() {
         return(

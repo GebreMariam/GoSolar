@@ -8,7 +8,8 @@ import API from '../util/API';
       super(props) 
       this.state = {
         products: [],
-        prod: 'BullShitsssss...'
+        // prod: 'BullShitsssss...'.
+        cart: []
       }
     }
     componentWillMount() {
@@ -21,11 +22,11 @@ import API from '../util/API';
           }
           this.setState({
             products: products,
-            prod: res.data
+            // prod: res.data
 
           }) 
        console.log('products ', this.state.products[0].Power)
-       console.log('products ', this.state.prod[0].name)
+      //  console.log('products ', this.state.prod[0].name)
 
       })
       .catch((err)=> {
@@ -51,9 +52,19 @@ import API from '../util/API';
                 )
       });
       return(
-         <div className="">
-              <span>Products.... </span>
-            <div className="row justify-content-sm-center">{Prod}</div>
+         <div className="container">
+           <hr />
+          <div className="row text-gray">
+            <span className="text-left col-sm">
+              <h4>Products</h4>
+            </span>
+            <span className="text-right col-sm">
+              <h4>Cart </h4>
+            </span>
+            <hr />
+          </div>
+         <hr/>            
+          <div className="row justify-content-sm-center">{Prod}</div>
         </div>
       )
     }

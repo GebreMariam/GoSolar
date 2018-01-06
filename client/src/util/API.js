@@ -25,8 +25,12 @@ export default {
         return Axios.post("/signup")
       },    
     Login: (user) => {
-        console.log('login' + user.email)
+        console.log('login email ' + user.email)
           return Axios.post("/login")
+    },
+    Orders: (user) => {
+        console.log('Getting Orders for User ' + user)
+          return Axios.get("/orders/" + user)
     },
     
 }

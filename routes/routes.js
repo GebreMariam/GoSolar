@@ -3,16 +3,16 @@ const dataController = require("../controller/dataController");
 
 module.exports = function(app, passport) {
  //process the signup form
-  app.post('/signup', passport.authenticate('local-signup', {
+  app.post('/signup', passport.authenticate('signup', {
       successRedirect: '/',
       failureRedirect: '/'
       // failureFlash: true //allow flash messages
     }));
 //process login form
-  app.post('/login', passport.authenticate('local-login', {
+  app.post('/login', passport.authenticate('login', {
         successRedirect: '/costdata',
-        failureRedirect: {message: "Incorrect Password" },
-        failureFlash: true //allow flash messages
+        failureRedirect: '/PRODUCTS'
+        // failureFlash: true //allow flash messages
       }));
   //LOGOUT
   app.get('/logout', function(req, res) {
@@ -31,11 +31,13 @@ module.exports = function(app, passport) {
   app.route("/productDetails/:id")
   .get(dataController.ProductDetails)
   
+  app.route("/orders/:user")
+  .get(dataController.Orders)
+    
   // If no API routes are hit, send the React app
-  app.use(function(req, res) {
-    req.flash('info', 'Flash is back!')
-      res.sendFile(path.join(__dirname, "../client/public/index.html"));
-    });
+  // app.use(function(req, res) {
+  //     res.sendFile(path.join(__dirname, "../client/public/index.html"));
+  //   });
 
 }
   

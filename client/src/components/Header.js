@@ -25,11 +25,11 @@ const Header = (props) => {
                             <li className="nav-item">
                                 <Link to="/products" className="nav-link">Products</Link>
                             </li>
-                            <li className="nav-item authorized">
-                                <Link to="/" className="nav-link">Orders</Link>
+                            <li className="nav-item">
+                                <Link to="/orders" id="orders" className="nav-link">Orders</Link>
                             </li>
-                            <li className="nav-item authorized">
-                                <Link to="/logout" className="nav-link">Logout</Link>
+                            <li className="nav-item">
+                                <Link to="/logout" id='logout' className="nav-link">Logout</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/login" className="nav-link">Login</Link>
