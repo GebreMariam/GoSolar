@@ -16,7 +16,19 @@ import Register from './components/Register';
 
 
 class App extends Component {
-  
+  constructor(props) {
+    super(props)
+    this.state = {
+      cart: []
+    }
+  }
+  onAddToCart (item) {
+  item.preventDefault();
+  this.setState({
+    cart: this.state.cart.push(item)
+  })
+  console.log(this.state.cart)
+}
   render() {
     return (
         <div className="App page divStyle">
@@ -27,7 +39,7 @@ class App extends Component {
                   <Route path="/about" component={About}/>  
                   <Route path="/Login" component={Login}/>
                   <Route path="/products" component={Products}/>
-                  <Route path="/productDetails" component={ProductDetails}/>
+                  <Route path="/productDetails" cart={this.state.cart} component={ProductDetails}/>
                   <Route path="/Register" component={Register}/> 
                   <Route path="/Orders" component={Orders}/> 
                   <Route path="/Checkout" component={Checkout}/> 

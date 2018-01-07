@@ -20,7 +20,7 @@ module.exports = {
     },
 
     ProductDetails: function(req, res) {
-        console.log('id is ', req.params.id);
+        console.log('id is ', req.params);
         db.products
         .findById(req.params.id)
         .then((data) => res.json(data))
