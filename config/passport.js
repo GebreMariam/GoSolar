@@ -1,5 +1,4 @@
 //config/passport.js
-const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 // const flash = require('connect-flash');
@@ -35,8 +34,7 @@ module.exports = function(passport){
         //User.findOne wont fire unless dat is sent back
         process.nextTick(() => {
             console.log('nextTick in motion!');
-            //match user with the email
-            //check if user alread exists
+           
             User.findOne({'email' : email }, (err, user) => {
                 //err
                 if (err)

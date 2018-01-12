@@ -26,10 +26,10 @@ export default {
     //user routes
     SignUp: (user) => {
         console.log('SignUp ',user)
-        return Axios.post("auth/signup")
+        return Axios.post("auth/signup", user)
     },    
     Login: (user) => {
-        // console.log('User ', user)
-          return Axios.post("auth/login")
+        console.log('User ', user)
+          return Axios.post("auth/login", user)
     }
 }

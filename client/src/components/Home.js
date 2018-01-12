@@ -8,9 +8,9 @@ class Home extends React.Component{
   constructor() {
     super();
     this.state = {
-      city: 'Boulder',
-      region: 'CO',
-      location: 'Boulder, CO',
+      city: '',
+      region: '',
+      location: '',
       costData: [], 
       acMonthly: [],
       costDollars: [],
@@ -38,14 +38,18 @@ class Home extends React.Component{
           })        
         .catch((err)=> { console.log(err) })
         .then(() => {
-          this.GetSolarData(this.state.location);  
+          this.GetSolarData(this.state.location);
+        })  
+        .then(() => {
           this.GetCostData(this.state.region);
-          this.CalcCostDollars(this.state.costData, this.state.acMonthly);
-
         })
-      } else {
+        .then(() => {
+          this.CalcCostDollars(this.state.costData, this.state.acMonthly);
+        })
+
+      } else {             
         this.GetSolarData(this.state.location);  
-        this.GetCostData(this.state.region);
+            this.GetCostData(this.state.region);
         this.CalcCostDollars(this.state.costData, this.state.acMonthly);
       } 
   }
@@ -80,6 +84,9 @@ class Home extends React.Component{
   }
   CalcCostDollars = (costArray, power) => {
     console.log('CALC - Dollars')
+    console.log('costArray ' , costArray)
+    console.log('power ' , power)
+
     let costDollar =[];    
     for(let i = 0; i < costArray.length; i++) {
       let cost = costArray[i];

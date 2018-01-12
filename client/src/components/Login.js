@@ -43,7 +43,7 @@ import API from '../util/API';
                     <input name="email" type="text" onChange={this.handleChange} />
                 </div>
                 <div className="form-group">
-                    <input type="password" name="password"  onChange={this.handleChange}/>
+                    <input type="password" name="password"  onChange={this.handleChange} />
                 </div>
                 <div className="mx-2">
                 <input type="submit" className="btn btn-primary" value="Log In"/>

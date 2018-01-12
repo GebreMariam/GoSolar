@@ -15,8 +15,7 @@ const authRoutes = require('./routes/authRoutes');
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/GoSolar";
 
-require('./config/passport.js');
-
+require('./config/passport.js')(passport);
 
 // Serve up static assets (usually on heroku)
 app.use(express.static("client/build"));

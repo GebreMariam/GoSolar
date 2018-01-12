@@ -4,8 +4,8 @@ const passport = require('passport');
 router = Router();
     //process the signup form
     router.post('/signup', passport.authenticate('signup', {
-        successRedirect: '/profile',
-        failureRedirect: '/signup',
+        // successRedirect: '/PassedSignUp',
+        // failureRedirect: '/faildeSignUp',
         failureFlash: true //allow flash messages
     }))
      //process login form
