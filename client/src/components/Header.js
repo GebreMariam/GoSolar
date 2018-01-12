@@ -2,14 +2,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-// import About from './About';
-// import Home from './Home';
-// import Products from './Products';
-// import Login from './Login';
 
-const Header = (props) => {
-    // console.log(props);
-        return (
+class Header extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            user: props.user,
+            loginLink: '/login',
+            isHidden: false
+        }    
+        // console.log(props);
+    }
+    componentWillMount () {
+        if(!this.state.user) {
+            this.setState({
+                user: "Login",
+                loginLink: '/login',
+                isHidden: false
+            })
+        } else {
+            this.setState({
+                user: `Welcome ${this.state.user}!`,
+                loginLink: '/',
+                isHidden: true
+            })
+        }
+    }
+    render() {
+         return (
         <div className="header">
                 <div>                
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,11 +48,11 @@ const Header = (props) => {
                             <li className="nav-item">
                                 <Link to="/orders" id="orders" className="nav-link">Orders</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to="/logout" id='logout' className="nav-link">Logout</Link>
+                            <li className="nav-item" id='logout'> {this.state.isHidden &&
+                                <Link to="/logout" className="nav-link">Logout</Link> }
                             </li>
                             <li className="nav-item">
-                                <Link to="/login" className="nav-link">Login</Link>
+                                <Link to={this.state.loginLink} className="nav-link">{this.state.user}</Link>
                             </li>
                         </ul>
                         </div>
@@ -41,5 +61,7 @@ const Header = (props) => {
         </div>
          
         )
+    }
+       
     }
 export default Header;

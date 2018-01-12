@@ -1,67 +1,67 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import API from '../util/API';
 
   class ProductDetails extends React.Component {
-    constructor(props) {
-      console.log(props)
-      super(props)
-      this.state = {
-        id: props.location.pathname,
-        productDetails: [],
-        cart: [],
-        qty: 0
-      }
-    }
-    onAddToCart (product) {
-      // product.preventDefault();
-      let qty = document.getElementsByName('qty').values()
-      console.log(qty)
-      // this.setState({
-      //   cart: this.state.cart.push({product})
-      // })
-      console.log(this.state.cart)
+      constructor(props) {
+        console.log(props)
+        super(props)
+        this.state = {
+        id: window.location.pathname,
+        productDetails: this.props.product,
+        isHidden: true,
+        cart: [{name: 'NAME', price: 123}]
+      }           
     }
     componentWillMount() {
-      console.log(this.state.id)
+        this.loadDetails();
+      if(this.state.cart.length > 0) {
+        this.setState({ isHidden: false })
+      };
+    };
+    loadDetails = () => {
       let prodId = this.state.id.split('/')
-      console.log(this.state.id);
-      console.log(prodId[2]);
-        this.setState({
-          id: prodId[2]
-        })
-
       API.ProductDetails(prodId[2])
       .then((res)=> {
-        console.log('returned prod DETAIL ' ,res.data)
         let detail = [];
         detail.push(res.data)
-        console.log(detail);
-        this.setState({
-          productDetails: detail
-        })
-        console.log(this.state.productDetails[0]);
+        this.setState({ productDetails: detail })
       })
-      .catch((err)=> {
-          console.log(err) 
-      });   
-    }
+      .catch((err)=> { console.log(err) });   
+      };
+ 
+    onAddToCart = (e, item)=> {
+      e.preventDefault();
+      console.log('ADDING TO CART ', this.refs.price.value , ' ' , this.refs.prodName.value)
+      let cartItem = {};
+        cartItem['prodName'] = this.refs.prodName.value;
+        cartItem['qty'] = this.refs.qty.value;
+        cartItem['price'] = this.refs.price.value;
+        cartItem['url'] = this.refs.imgURL.value;
+      let theCartItem = this.state.cart
+        theCartItem.push(cartItem)
+      this.setState({
+        cart: theCartItem
+      });      
+      console.log('car after ADD ',this.state.cart)
+      return false;
+    };   
 
-    render() {
+    render(props) {
         const ProdDetail = this.state.productDetails.map((product) => {
           console.log(product)
           return(
-            <form className="" onSubmit={ this.onAddToCart(product) }>
-              <div className="row text-left p-5" key={product._id} style={{ backgroundColor: 'white' }}>
+            <form key={product._id} onSubmit={ ()=> this.onAddToCart(product) }>
+              <div className="row text-left p-5" style={{ backgroundColor: 'white' }}>
                 <div className="col-sm">
-                  <img className= "img-responsive justify-content-sm-start" src='img/csSolar.png' alt="prod" style={{ "height": 77, "width": 'auto'}}/>
+                  <img className= "img-responsive" src={product.imgURL[0]} ref='imgURL' alt="prod" style={{"width": 'auto'}}/>
                 </div>
-              
                 <div className="col-sm mx-auto my-2 text-primary">
-                    <div className="m-2 justify-content-sm-start">{product.name}</div> 
-                    <div className="mx-auto">${product.price}</div>  
+                    <div className="m-2 justify-content-sm-start" ref="prodName">{product.name}</div> 
+                    <div className="mx-auto" ref="price">${product.price}</div>  
                     <div className="mx-3"> Qty.
-                      <input type="number" className="m-2" name="qty" min="1" max="5" /> 
-                      <button className="mx-auto btn btn-sm btn-success">Add to Cart</button> 
+                      <input type="number" className="m-2 col-sm" ref="qty" min="1" max="55" /> 
+                      <input type="submit" className="mx-auto btn btn-sm btn-success" value="Add to Cart"></input> 
                     </div>
                 </div>
                 <div className="pr-2">   
@@ -82,17 +82,19 @@ import API from '../util/API';
        <div>
           <div className="container">
           <div className="row text-gray">
-            <span className="text-left text-muted col-sm">
+            <span className="text-left text-muted align-left col-sm"> 
               <h5>Product Details</h5>
+            </span>   
+            <span className="text-right col-sm">
+              <Link to='/Checkout'  params= { {cartItems: this.state.cart} } >
+                {!this.state.isHidden && <h4>Cart <span className="border rounded border-white"> {this.state.cart.length}</span></h4> }
+              </Link>
             </span>
-            <span className="text-right pr-5 text-muted col-sm">
-              <h4>Cart <badge> | {this.state.cart.length}</badge></h4>
-            </span>
-        </div>   
-        <hr/>
-            <form>
-                {ProdDetail}
-            </form>
+          </div>   
+          <hr />
+            <div>
+              {ProdDetail}
+            </div>
           </div>
         </div>
       )

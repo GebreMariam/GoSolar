@@ -7,16 +7,9 @@ export default {
     },     
     Products: () => {
         return Axios.get("/products")
-      },
-
-    //   ProductDetails: (path) => {
-    //     console.log(`api/productDetails/${path}`)
-    //     path = `api/productDetails/${path}`;
-    //     return Axios.get( path)
-    // },      
-
+      },   
     ProductDetails: (id) => {
-        console.log(id)
+        // console.log(id)
         return Axios.get("/productDetails/" + id)
     },      
     LocationData: ()=> {
@@ -32,11 +25,11 @@ export default {
     },
     //user routes
     SignUp: (user) => {
-        console.log(user)
+        console.log('SignUp ',user)
         return Axios.post("auth/signup")
     },    
     Login: (user) => {
-        console.log('login email ' + user.email)
+        // console.log('User ', user)
           return Axios.post("auth/login")
     }
 }

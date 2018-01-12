@@ -8,40 +8,40 @@ var costSchema = mongoose.Schema({
     state    : {
         type: String
     },
-    Jan : {
+    1 : {
         type: ["double"]
     },
-    Feb : {
+    2 : {
         type: ["double"]       
     },
-    Mar : {
+    3 : {
         type: ["double"]
     },
-    Apr : {
+    4 : {
         type: ["double"]
     },
-    May: {
+    5: {
         type: ["double"]
     },
-    Jun : {
+    6 : {
         type: ["double"]
     },
-    Jul : {
+    7 : {
         type: ["double"]      
     },
-    Aug : {
+    8 : {
         type: ["double"]
     },
-    Sep : {
+    9 : {
         type: ["double"]
     },
-    Oct : {
+    10 : {
         type: ["double"]       
     },
-    Nov : {
+    11 : {
         type: ["double"]     
     },
-    Dec : {
+    12 : {
         type: ["double"]
     }
 });

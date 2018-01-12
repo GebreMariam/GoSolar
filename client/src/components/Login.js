@@ -9,7 +9,6 @@ import API from '../util/API';
             email: '',
             password: ''
         };
-        
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
@@ -25,11 +24,12 @@ import API from '../util/API';
     
       handleSubmit(event) {
         event.preventDefault();
-        console.log('email submitted: ' + this.state.email + '  password: ' +this.state.password);
+        // console.log('email submitted: ' + this.state.email + '  password: ' +this.state.password);
         let user = {email: this.state.email, password: this.state.password}
+        console.log(user);
         API.Login(user)
         .then((res) => {
-            console.log('Login get ', res.data)
+            console.log('Login get ', res)
         })
         .catch((err) =>{
             console.log(err);
@@ -43,7 +43,7 @@ import API from '../util/API';
                     <input name="email" type="text" onChange={this.handleChange} />
                 </div>
                 <div className="form-group">
-                    <input type="password" name="password"  onChange={this.handleChange.bind(this)}/>
+                    <input type="password" name="password"  onChange={this.handleChange}/>
                 </div>
                 <div className="mx-2">
                 <input type="submit" className="btn btn-primary" value="Log In"/>

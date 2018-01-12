@@ -16,33 +16,38 @@ import Register from './components/Register';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      cart: []
-    }
+
+  state = {
+      user: '',
+      product: [],
+      cartItems: [111]
+  };
+  handleProductSelect = (product) => {
+    let prod = product;
+    this.setState({
+      product: prod
+    })
   }
-  onAddToCart (item) {
-  item.preventDefault();
-  this.setState({
-    cart: this.state.cart.push(item)
-  })
-  console.log(this.state.cart)
-}
-  render() {
+
+  
+  render() {  
+    let routerProps = {
+      product: this.state.product,
+      cartItems: this.state.cartItems
+    }
     return (
         <div className="App page divStyle">
           <div className="content">
-            <Header />
+            <Header user={this.state.user}/>
                 <Switch> 
-                  <Route exact path="/" component={Home}/> 
-                  <Route path="/about" component={About}/>  
-                  <Route path="/Login" component={Login}/>
-                  <Route path="/products" component={Products}/>
-                  <Route path="/productDetails" cart={this.state.cart} component={ProductDetails}/>
-                  <Route path="/Register" component={Register}/> 
-                  <Route path="/Orders" component={Orders}/> 
-                  <Route path="/Checkout" component={Checkout}/> 
+                  <Route exact path="/" component={Home}  /> 
+                  <Route path="/about" component={About} />  
+                  <Route path="/Login" component={Login} />
+                  <Route path="/products" render={(routeProps) =>(<Products {...routerProps} />)} />
+                  <Route path="/productDetails" render={(routeProps) =>(<ProductDetails {...routerProps} />)} />
+                  <Route path="/Register" component={Register} /> 
+                  <Route path="/Orders" component={Orders} /> 
+                  <Route to="checkOUT" path="/Checkout"  component={Checkout} /> 
                 </Switch>
           </div>  
             <Footer />

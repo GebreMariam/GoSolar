@@ -8,7 +8,10 @@ module.exports = {
         db.costData
         .find({state: req.params.region})
         .sort({ natural: -1 })
-        .then((data) => res.json(data[0]))
+        .then((data) => {
+            console.log(data)
+            res.json(data)
+        })
         .catch(err => res.status(422).json(err));
     },
     Products: function(req, res) {

@@ -1,3 +1,88 @@
+✨  Done in 37.31s.
+Gebremariams-MacBook-Pro:client gebremariam$ git push heroku master
+Counting objects: 7384, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (5417/5417), done.
+Writing objects: 100% (7384/7384), 10.03 MiB | 596.00 KiB/s, done.
+Total 7384 (delta 1555), reused 6870 (delta 1500)
+remote: Compressing source files... done.
+remote: Building source:
+remote:
+remote: -----> Node.js app detected
+remote:
+remote: -----> Creating runtime environment
+remote:
+remote:        NPM_CONFIG_LOGLEVEL=error
+remote:        NPM_CONFIG_PRODUCTION=true
+remote:        NODE_VERBOSE=false
+remote:        NODE_ENV=production
+remote:        NODE_MODULES_CACHE=true
+remote:
+remote: -----> Installing binaries
+remote:        engines.node (package.json):  unspecified
+remote:        engines.npm (package.json):   unspecified (use default)
+remote:        engines.yarn (package.json):  unspecified (use default)
+remote:
+remote:        Resolving node version 8.x...
+remote:        Downloading and installing node 8.9.4...
+remote:        Using default npm version: 5.6.0
+remote:        Resolving yarn version 1.x...
+remote:        Downloading and installing yarn (1.3.2)...
+remote:        Installed yarn 1.3.2
+remote:
+remote: -----> Restoring cache
+remote:        !     node_modules checked into source control
+remote:        https://blog.heroku.com/node-habits-2016#9-only-git-the-important-bits
+remote:
+remote:        Skipping cache restore (not-found)
+remote:
+remote: -----> Building dependencies
+remote:        Installing node modules (yarn.lock)
+remote:        yarn install v1.3.2
+remote:        [1/4] Resolving packages...
+remote:        error Your lockfile needs to be updated, but yarn was run with `--frozen-lockfile`.
+remote:        info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.
+remote:
+remote: -----> Build failed
+remote:
+remote:  !     Outdated Yarn lockfile
+remote:
+remote:        Your application contains a Yarn lockfile (yarn.lock) which does not
+remote:        match the dependencies in package.json. This can happen if you use npm
+remote:        to install or update a dependency instead of Yarn.
+remote:
+remote:        Please run the following command in your application directory and check
+remote:        in the new yarn.lock file:
+remote:
+remote:        $ yarn install
+remote:        $ git add yarn.lock
+remote:        $ git commit -m "Updated Yarn lockfile"
+remote:        $ git push heroku master
+remote:
+remote:        https://kb.heroku.com/why-is-my-node-js-build-failing-because-of-an-outdated-yarn-lockfile
+remote:
+remote:  !     Push rejected, failed to compile Node.js app.
+remote:
+remote:  !     Push failed
+remote: Verifying deploy....
+remote:
+remote: !       Push rejected to fierce-sands-19151.
+remote:
+To https://git.heroku.com/fierce-sands-19151.git
+ ! [remote rejected]   master -> master (pre-receive hook declined)
+error: failed to push some refs to 'https://git.heroku.com/fierce-sands-19151.git'
+Gebremariams-MacBook-Pro:client gebremariam$
+
+
+
+
+
+
+
+
+
+
+
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
 import API from '../util/API';
