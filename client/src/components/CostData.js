@@ -2,7 +2,7 @@ import React from 'react';
 import {Bar} from 'react-chartjs-2';
 
 const CostData =(props) =>  {
-    console.log(props)
+    // console.log(props)
         
     let chartStyle = {
             backgroundColor: 'rgba(240,255,240,0.4)'

@@ -3,7 +3,7 @@ import {Bar} from 'react-chartjs-2';
 
 class SolarData extends React.Component {
     componentWillMount(){
-        console.log(this.props)
+        // console.log(this.props)
     }    
       
     render() {

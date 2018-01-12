@@ -16,7 +16,7 @@ import React from 'react'
     setTotal = () => {
       let cartItems = this.state.cartItems  
       let prodTotal = 0;
-      let qty = 0;
+    //   let qty = 0;
         for (let i in cartItems) {
             console.log(cartItems[i]['price'])
             prodTotal += cartItems[i]['price'] * cartItems[i]['qty']
@@ -45,7 +45,7 @@ import React from 'react'
             return (
                 <div className="card m-3 border border-gray" key={item._id}>
                     <div className="row card-body py-10" >
-                            <img src={item.imgURL} style={{"height": 55, "width": 'auto'}} className="card-img-left img-responsive" /> 
+                            <img src={item.imgURL} alt='item.imgURL' style={{"height": 55, "width": 'auto'}} className="card-img-left img-responsive" /> 
                             <span className="card-title pl-3 mb-1 justify-content-sm-bottom">{item.name}</span> 
                         <div className="col-sm text-right">
 

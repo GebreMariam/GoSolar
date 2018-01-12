@@ -1,13 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import API from '../util/API';
+// import API from '../util/API';
 
   class Login extends React.Component {
-      constructor() {
-        super();
+      constructor(props) {
+        super(props);
+        console.log(props)
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            // user: '',
+            // userId: '',
+            handleSignIn: props.handleSignIn
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,16 +28,10 @@ import API from '../util/API';
     
       handleSubmit(event) {
         event.preventDefault();
-        // console.log('email submitted: ' + this.state.email + '  password: ' +this.state.password);
         let user = {email: this.state.email, password: this.state.password}
         console.log(user);
-        API.Login(user)
-        .then((res) => {
-            console.log('Login get ', res)
-        })
-        .catch((err) =>{
-            console.log(err);
-        })
+        this.handleSignIn(user);
+       
         }
     render() {
         return(

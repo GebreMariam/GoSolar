@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
   class Orders extends React.Component {
     constructor(props) {
+      console.log(props)
       super(props)
       this.state = {
         user: "5a13cb9aa79a67182fa42942",
@@ -14,7 +15,7 @@ import { Link } from 'react-router-dom';
     componentWillMount() {
       API.Orders(this.state.user)
       .then((res) => {
-        console.log(res.data[0]);
+        // console.log(res.data[0]);
         let orders = [];
         for (let i = 0; i< res.data.length; i++) {
           orders.push(res.data[i])
@@ -22,7 +23,7 @@ import { Link } from 'react-router-dom';
         this.setState({
           orders: orders
         })        
-        console.log(orders)
+        // console.log(orders)
       }) 
       .catch((err) => { 
         console.log(err) 
@@ -30,7 +31,7 @@ import { Link } from 'react-router-dom';
     }
     // ObjectId("5a13cb9aa79a67182fa42942")
     render() {
-      console.log(this.state.orders)
+      // console.log(this.state.orders)
       const Orders = this.state.orders.map((order) => {
         return(
           <div className="card text-left mx-4 col-sm border border-silver" key={order._id} style={{ backgroundColor: '' }}>

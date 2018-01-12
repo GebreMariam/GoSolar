@@ -39,7 +39,7 @@ import API from '../util/API';
      
     render() {
       const Prod = this.state.products.map((product)=> {     
-        console.log(product) 
+        // console.log(product) 
         return (
             <div key={product._id} className="text-left m-3 col-sm-3 border border-silver" style={{ backgroundColor: 'white' }}>
               <Link to={`/productDetails/${product._id}`} params={{ id: product._id }} >
