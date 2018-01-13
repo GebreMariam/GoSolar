@@ -46,34 +46,38 @@ import API from '../util/API';
       console.log('car after ADD ',this.state.cart)
       return false;
     };   
-
     render(props) {
         const ProdDetail = this.state.productDetails.map((product) => {
           console.log(product)
           return(
-            <form key={product._id} onSubmit={ ()=> this.onAddToCart(product) }>
-              <div className="row text-left p-5" style={{ backgroundColor: 'white' }}>
-                <div className="col-sm">
+            <form key={product._id} onSubmit={ ()=> this.onAddToCart(product) }style={{ backgroundColor: 'white' }}>
+            <img className= "img-responsive" src={product.imgURL[0]} ref='imgURL' alt="prod" style={{"width": 'auto'}}/>
+
+              <div className="row text-left p-2" >
+                <div className="col-sm-12">
                   <img className= "img-responsive" src={product.imgURL[0]} ref='imgURL' alt="prod" style={{"width": 'auto'}}/>
                 </div>
-                <div className="col-sm mx-auto my-2 text-primary">
-                    <div className="m-2 justify-content-sm-start" ref="prodName">{product.name}</div> 
-                    <div className="mx-auto" ref="price">${product.price}</div>  
-                    <div className="mx-3"> Qty.
-                      <input type="number" className="m-2 col-sm" ref="qty" min="1" max="55" /> 
-                      <input type="submit" className="mx-auto btn btn-sm btn-success" value="Add to Cart"></input> 
-                    </div>
+              </div>  
+                <div className="row mt-4">
+                  <div className="col-md-12 align-middle">
+                      <span className="col-sm text-left py-2" ref="prodName">{product.name}</span> 
+                      <span className="col-sm py-2" ref="price"> ${product.price}</span> 
+                      <span className="col-sm offset-sm-3" >Qty.</span>
+                      <input type="number" className="col-sm-2 mx-2" ref="qty" min="1" max="55" /> 
+                      <input type="submit" className="col-sm-2 btn btn-sm btn-success" value="Add to Cart"></input> 
+                  </div>
                 </div>
-                <div className="pr-2">   
-                  <p className="text-muted">{product.briefDescription}</p>
-                  <p className="text-muted">{product.fullDescription}</p>  
-                  <p className="text-muted">Manufacturer: {product.manufacturer}</p> 
-                  <p className="text-muted">Module Type: {product.moduleType}</p> 
-                  <p className="text-muted">Remaining Stock: {product.stock}</p> 
-                  <p className="text-muted">Efficiency: {product.efficiency}</p> 
-                  <p className="text-muted">Power Output: {product.power}</p> 
-                </div>
+          <div className="row text-left p-5">   
+              <div className="pr-2">   
+                <p className="text-muted">{product.briefDescription}</p>
+                <p className="text-muted">{product.fullDescription}</p>  
+                <p className="text-muted">Manufacturer: {product.manufacturer}</p> 
+                <p className="text-muted">Module Type: {product.moduleType}</p> 
+                <p className="text-muted">Remaining Stock: {product.stock}</p> 
+                <p className="text-muted">Efficiency: {product.efficiency}</p> 
+                <p className="text-muted">Power Output: {product.power}</p> 
               </div>
+          </div>
             </form>
           )
         })  

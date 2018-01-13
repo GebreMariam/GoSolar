@@ -13,7 +13,7 @@ const CarbonOffset =(props) =>  {
         return({
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Nov', 'Dec'],
             datasets: [{
-                label: '$ Saved',
+                label: 'lbs CO2 Offset',
                 backgroundColor: 'rgba(43, 144, 11,0.6)',
                 borderColor: 'rgba(255,99,132,1)',
                 borderWidth: 1,

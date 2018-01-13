@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import About from './components/About';
 import Checkout from './components/Checkout';
@@ -21,50 +21,55 @@ class App extends Component {
   state = {
       user: '',
       userId: '',
+      cartItems: [],
       product: [],
-      cartItems: [111]
+      loggedIn: false,
+      error: ''
   };
-  handleProductSelect = (product) => {
-    let prod = product;
-    this.setState({
-      product: prod
-    })
-  }
+
 handleSignIn = (user) => {
   API.Login(user)
   .then((res) => {
       console.log('SignIn get ', res.data)
-      this.setState({
+      if(res.data.firstName) {
+         this.setState({
           user: res.data.firstName,
-          userId: res.data._id
-      })
+          userId: res.data._id,
+          loggedIn: true
+      })  
+       console.log(this.state.user , ' , ' , this.state.loggedIn) /// i am getting this
+       return <Redirect to={Checkout} />;
+      } 
   })
   .catch((err) =>{
       console.log(err);
   })
-}
-  render() {  
-    let routerProps = {
+} 
+
+routerProps = {
       product: this.state.product,
       cartItems: this.state.cartItems,
       user: this.state.user,
       userId: this.state.userId,
-      handleSignIn: this.handleSignIn
+      handleSignIn: this.handleSignIn,
+      loggedIn: this.loggedIn
     }
+  render() {  
+   
     return (
       <div className="App page divStyle">
         <div className="content">
           <Header user={this.state.user} />
-              <Switch> 
-                <Route exact path="/" render={(routerProps) => (<Home {...routerProps} />)}  /> 
+              {/* <Switch>  */}
+                <Route exact path="/" render={(routerProps) => (<Home {...this.routerProps} />)}  /> 
                 <Route path="/about" component={About} />  
-                <Route path="/Login" render={(routerProps) => (<Login {...routerProps} />)} />
-                <Route path="/products" render={(routeProps) =>(<Products {...routerProps} />)} />
-                <Route path="/productDetails" render={(routeProps) =>(<ProductDetails {...routerProps} />)} />
+                <Route path="/Login" render={(routerProps) => (<Login  {...this.routerProps} />)} />
+                <Route path="/products" render={(routeProps) =>(<Products {...this.routerProps} />)} />
+                <Route path="/productDetails" render={(routeProps) =>(<ProductDetails {...this.routerProps} />)} />
                 <Route path="/Register" component={Register} /> 
                 <Route path="/Orders" component={Orders} /> 
-                <Route to="checkOUT" path="/Checkout"  component={Checkout} /> 
-              </Switch>
+                <Route path="/Checkout" render={() => (this.loggedIn ? (<Redirect to="/Checkout" />) : (<Login {...this.routerProps} />))} /> 
+              {/* </Switch> */}
         </div>  
             <Footer />
         </div>           

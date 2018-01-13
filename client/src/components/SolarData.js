@@ -30,7 +30,7 @@ class SolarData extends React.Component {
         }        
         return (
             <div>
-            <h5 className="text-center text-Silver">Avg. Monthly Kwh - <strong>{this.props.city}, {this.props.region} </strong></h5> 
+            <h5 className="text-center text-Silver">Avg. Monthly Kwh {this.props.city}, {this.props.region} </h5> 
                 <div style={chartStyle} className="rounded">
                     <Bar
                         data={data()}

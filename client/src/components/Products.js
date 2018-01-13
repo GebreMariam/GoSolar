@@ -50,7 +50,6 @@ import API from '../util/API';
                 </div>
               </Link>
               <p className="text-muted">{product.fullDescription}</p> 
-                <button className="mx-auto btn btn-small btn-success">Add to Cart</button>
             </div>
             )
       });

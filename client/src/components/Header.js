@@ -6,15 +6,16 @@ import './Header.css';
 class Header extends React.Component {
     constructor(props) {
         super(props)
+        console.log(props)
         this.state = {
             user: props.user,
             loginLink: '/login',
             isHidden: false
         }    
-        // console.log(props);
     }
     componentWillMount () {
         if(!this.state.user) {
+            console.log(this.state.user);
             this.setState({
                 user: "Login",
                 loginLink: '/login',

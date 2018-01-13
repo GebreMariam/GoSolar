@@ -23,6 +23,10 @@ export default {
         // console.log('Getting Orders for User ' + user)
           return Axios.get("/orders/" + user)
     },
+    CreateOrder: (order) => {
+        console.log(order) 
+        return Axios.post("/createOrder", order)
+    },
     //user routes
     SignUp: (user) => {
         console.log('SignUp ',user)

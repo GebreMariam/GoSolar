@@ -64,6 +64,13 @@ class Home extends React.Component{
       } 
   }
 
+  ReChart = () => {    
+    this.GetSolarData(this.state.location);
+    this.GetCostData(this.state.region, this.state.acMonthly);
+    this.CalcCostDollars(this.state.costData, this.state.acMonthly);
+    this.CalcCarbonOffset(this.state.acMonthly)
+  }
+
   GetSolarData = (cityState) => {
       // console.log('SOLAR DATA get ');
     return API.SolarEnergy(cityState)
@@ -84,7 +91,7 @@ class Home extends React.Component{
             .catch((err)=> { console.log(err) })
     }
   GetCostData = (state) => {
-    // console.log('GET COST DATA for ', state);
+    console.log('GET COST DATA for ', state);
     return API.AvgMonthlyCost(state)
       .then((res)=> {
           let costArray = [];
@@ -92,7 +99,7 @@ class Home extends React.Component{
                 let point = res.data[0][i+1][0].toFixed(2) / 100;
                 costArray.push(point)
             }
-            // console.log('costArray is ', costArray);
+            console.log('costArray is ', costArray);
           this.setState({ costData: costArray })
           return costArray
       })
@@ -130,18 +137,22 @@ class Home extends React.Component{
   
   handleChange(event) {
     this.setState({ location: event.target.value })
+    console.log(event.target.value)
   }
 
   handleSubmit(event) {
-    // console.log(this.state)
+    console.log(this.state)
     event.preventDefault();
-    console.log(this.state.location.split(','));
     let loca = this.state.location.split(',');
+    console.log(loca)
+    let city = loca[0].trim().toUpperCase
+    let region = loca[1].trim().toUpperCase
     this.setState({
-      city: loca[0].trim(),
-      region: loca[1].trim(),
-      location: `${loca[0].trim()},${loca[1].trim()}`
+      city: city,
+      region: region,
+      location: `${city},${region}`
     })     
+    this.ReChart()
   }
 
 render() {

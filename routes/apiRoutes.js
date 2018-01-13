@@ -19,6 +19,9 @@ router = Router();
   
   router.route("/orders/:user")
   .get(dataController.Orders)
+
+  router.route("/createOrder")
+    .post(dataController.CreateOrder)
     
   // If no API routes are hit, send the React app
   // router.use(function(req, res) {

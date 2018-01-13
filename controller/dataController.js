@@ -36,6 +36,13 @@ module.exports = {
         .then((data) => res.json(data))
         .catch(err => res.status(422).json(err));
     },
+    CreateOrder: function (req, res) {
+        console.log('orderCreate ', req.params.order)
+        db.orders
+        .save({order})
+        .then((data) => res.json(data))
+        .catch(err => console.log(err))
+    }, 
     SignUp: function(req, res) {
         console.log('CREATING user', req.body);
         db.user

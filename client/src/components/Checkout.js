@@ -1,4 +1,6 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom';
+import API from '../util/API';
 
 
   class Checkout extends React.Component {
@@ -31,9 +33,16 @@ import React from 'react'
           OrderTotal: OrderTotal
       })
     } 
+    CreateOrder = (order) => {
+        API.CreateOrder
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => console.log(err))
+    }
     componentWillMount() {
         this.setTotal()
-       
+
     } 
        
     render() { 
@@ -84,7 +93,6 @@ import React from 'react'
                                 <label>Order Total</label>
                                 <span className="px-2 form-group">${line.orderTotal}</span> 
                             </div>
-                           
                             <input type="submit" className="mx-auto btn btn-success" value="Place Order" /> 
                         </div>
                     </div>
