@@ -2,6 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import '../util/favicon.png';
+
+const logo = './favicon.png';
 
 class Header extends React.Component {
     constructor(props) {
@@ -34,7 +37,7 @@ class Header extends React.Component {
         <div className="header">
                 <div>                
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                        <Link to="/" className="navbar-brand">GoSolar</Link>
+                        <Link to="/" className="navbar-brand"><img src={logo} width={44}/> GoSolar</Link>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                         </button>

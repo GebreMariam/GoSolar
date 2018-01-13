@@ -9,7 +9,7 @@ module.exports = {
         .find({state: req.params.region})
         .sort({ natural: -1 })
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             res.json(data)
         })
         .catch(err => res.status(422).json(err));

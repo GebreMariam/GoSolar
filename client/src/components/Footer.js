@@ -21,13 +21,13 @@ const Footer = (props) => {
                         <Link to="/about" className="nav-link">Installers</Link> 
                         </li>
                         <li className="nav-item">
-                        <Link to="/" className="nav-link">Some Link</Link>
+                        <Link to="/" className="nav-link">Energy Storage</Link>
                         </li>
                         <li className="nav-item orders">
-                        <Link to="/" className="nav-link">Other Link here</Link>
+                        <Link to="/" className="nav-link">Government Incentives</Link>
                         </li>
                         <li className="nav-item">
-                        <Link to="/" className="nav-link">Energy Storage</Link>
+                        <Link to="/" className="nav-link">Additional Resources</Link>
                         </li>
                     </ul>
                     </div>

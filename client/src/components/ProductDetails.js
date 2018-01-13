@@ -49,13 +49,13 @@ import API from '../util/API';
     render(props) {
         const ProdDetail = this.state.productDetails.map((product) => {
           console.log(product)
+          let imgUrl = product.imgURL[0].toString();
           return(
             <form key={product._id} onSubmit={ ()=> this.onAddToCart(product) }style={{ backgroundColor: 'white' }}>
-            <img className= "img-responsive" src={product.imgURL[0]} ref='imgURL' alt="prod" style={{"width": 'auto'}}/>
 
               <div className="row text-left p-2" >
                 <div className="col-sm-12">
-                  <img className= "img-responsive" src={product.imgURL[0]} ref='imgURL' alt="prod" style={{"width": 'auto'}}/>
+                  <img className= "img-responsive" src={imgUrl} ref='imgURL' alt="prod" style={{"width": 'auto'}}/>
                 </div>
               </div>
                 <div className="row mt-4">

@@ -60,5 +60,6 @@ import { Validator } from 'validator'
          </div>
         ) 
     }
+    // currentSrc: http://localhost:3000/img/gigaWatt.jpg
   }
   export default Login;
