@@ -38,7 +38,7 @@ handleSignIn = (user) => {
           loggedIn: true
       })  
        console.log(this.state.user , ' , ' , this.state.loggedIn) /// i am getting this
-       return <Redirect to={Checkout} />;
+       return <Redirect to='/Checkout' />;
       } 
   })
   .catch((err) =>{

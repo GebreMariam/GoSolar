@@ -145,8 +145,8 @@ class Home extends React.Component{
     event.preventDefault();
     let loca = this.state.location.split(',');
     console.log(loca)
-    let city = loca[0].trim().toUpperCase
-    let region = loca[1].trim().toUpperCase
+    let city = loca[0].trim().toUpperCase()
+    let region = loca[1].trim().toUpperCase()
     this.setState({
       city: city,
       region: region,
@@ -166,20 +166,25 @@ render() {
                 </div>    
               </div> 
           </form>
-          <div className="py-3 col-sm-7">
-            <SolarData city={this.state.city} region={this.state.region} solarData={this.state.acMonthly} />
+          <div className="row">
+            <div className="py-3 col-sm-7">  
+              <SolarData city={this.state.city} region={this.state.region} solarData={this.state.acMonthly} />
+              <p> solar data </p> 
+           </div>
           </div>
-          <div className="py-3 col-sm-7">
-            <CostData city={this.state.city} region={this.state.region} costData={this.state.costDollars} />
-          </div>
-          <div className="py-3 col-sm-7">
-            <CarbonOffset city={this.state.city} region={this.state.region} carbonData={this.state.carbonData} />
-          </div>
-            <div className="text-white">CARBON DATA : {this.state.carbonData}</div>
-            <div>
-            <div />
-              total cost {this.state.totalCost}
+          <div className="row">
+            <div className="py-3 col-sm-7">
+              <CostData city={this.state.city} region={this.state.region} costData={this.state.costDollars} />
+              <p> cost data...</p>
             </div>
+          </div>
+          <div className="row">
+            <div className="py-3 col-sm-7">
+              <CarbonOffset city={this.state.city} region={this.state.region} carbonData={this.state.carbonData} />
+              <p> carbon ofset</p>
+            </div>
+          </div>
+
         </div>
          
     )

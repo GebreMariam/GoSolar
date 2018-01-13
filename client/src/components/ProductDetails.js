@@ -30,7 +30,7 @@ import API from '../util/API';
       .catch((err)=> { console.log(err) });   
       };
  
-    onAddToCart = (e, item)=> {
+    onAddToCart = (e)=> {
       e.preventDefault();
       console.log('ADDING TO CART ', this.refs.price.value , ' ' , this.refs.prodName.value)
       let cartItem = {};
@@ -57,7 +57,7 @@ import API from '../util/API';
                 <div className="col-sm-12">
                   <img className= "img-responsive" src={product.imgURL[0]} ref='imgURL' alt="prod" style={{"width": 'auto'}}/>
                 </div>
-              </div>  
+              </div>
                 <div className="row mt-4">
                   <div className="col-md-12 align-middle">
                       <span className="col-sm text-left py-2" ref="prodName">{product.name}</span> 

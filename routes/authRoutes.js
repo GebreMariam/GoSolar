@@ -22,10 +22,10 @@ router = Router();
         let message = 'Incorrectd Username or Password';
         res.send(message)
     })
-    router.get('/auth/SignUpSuccess', (req, res)=> {
+    router.get('/SignUpSuccess', (req, res)=> {
         res.json(req.user);
     })
-    router.get('/auth/SignUpFailed', (req, res) => {
+    router.get('/SignUpFailed', (req, res) => {
         let message = 'Something went wrong, please try again (email)';
         res.send(message)
     })
