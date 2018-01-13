@@ -37,10 +37,10 @@ class Home extends React.Component{
       // console.log('CALL IP API')
         API.LocationData()
         .then((res)=> {
-          // console.log(res.data.region)
+          console.log(res.data)
             this.setState({
                 city: res.data.city,
-                region: res.data.region,
+                region: res.data.region_code,
                 location: `${res.data.city},${res.data.region}`
             })
           })        

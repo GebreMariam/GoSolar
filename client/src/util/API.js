@@ -15,7 +15,7 @@ export default {
     LocationData: ()=> {
         // https://ipapi.co/8.8.8.8/json/
         // https://ip-api.com/json
-        return Axios.get("https://ipapi.co/8.8.8.8/json");
+        return Axios.get("https://ipapi.co/json");
     },
     SolarEnergy: (location) => {
         // console.log(location)
